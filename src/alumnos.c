@@ -37,10 +37,25 @@ static const struct alumno_s RONAL_CELAYA = {
     .documento = "95.949.636",
 };
 
+/**
+ * @brief Arreglo donde se guardan los datos de los alumnos. Los datos de cada
+ *        alumno se guardan en una estructura del tipo alumno_s.
+ * @see alumno_s
+ * 
+ */
+
 const alumno_t ALUMNOS[] = {
     &ESTEBAN_VOLENTINI,
     &RONAL_CELAYA,
 };
+
+/**
+ * @brief Constante donde se guarda la cantidad de alumnos que contiene
+ *        el arreglo ALUMNOS.
+ * @see alumno_s
+ * @see ALUMNOS
+ * 
+ */
 
 const int CANTIDAD_ALUMNOS = (sizeof(ALUMNOS) / sizeof(alumno_t));
 

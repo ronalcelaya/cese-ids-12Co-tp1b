@@ -29,17 +29,73 @@ extern "C" {
 
 /*=====[Definitions of public data types]====================================*/
 
+/**
+ * @brief Estructura que contiene los campos para guardar los datos del alumno.
+ *        Ejemplo
+ * @code
+ * static const struct alumno_s ALUMNO = {
+ *     .apellidos = "VOLENTINI",
+ *     .nombres = "Esteban Daniel",
+ *     .documento = "23.517.968",
+ * };
+ * @endcode
+ */
+
 typedef struct alumno_s {
-    char apellidos[30];
-    char nombres[30];
-    char documento[11];
+    char apellidos[30];   /**< Campo donde se guarda el apellido. El tamaño
+                               máximo es de 30 bytes */
+    char nombres[30];     /**< Campo donde se guarda el nombre. l tamaño
+                               máximo es de 30 bytes */
+    char documento[11];   /**< Campo donde se guarda el número de documento. 
+                               El tamaño máximo es de 11 bytes */
 } const * alumno_t;
 
 /*=====[Definitions of public global variables]==============================*/
 
 /*=====[Prototypes (declarations) of public functions]=======================*/
 
+/**
+ * @brief Función que serializa los datos del alumno
+ * 
+ * @param[in,out]    cadena  Puntero donde se pasa el buffer para guardar los 
+ *                           datos de salida serializados.
+ * @param[in]        espacio Es el máximo número de bytes que se van a escribir 
+ *                           al buffer de salida 
+ * @param[in]        alumno  Estructura que contiene los datos a serializar 
+ * @see alumno_s
+ * @return                   Regresa true si la serializaión fue exitosa. 
+ * @return                   Regresa false si hubo problemas con la serialización
+ * 
+ * @code 
+ * bool resultado;
+ * 
+ * static const struct alumno_s ALUMNO = {
+ *     .apellidos = "VOLENTINI",
+ *     .nombres = "Esteban Daniel",
+ *     .documento = "23.517.968",
+ * };
+ * resultado = SerializarAlumno(cadena, espacio, &ALUMNO);
+ * @endcode
+ */
+
 bool SerializarAlumno(char * cadena, size_t espacio, const alumno_t alumno);
+
+/**
+ * @brief Función que serializa los datos de un conjunto de alumnos.
+ * 
+ * @param[in,out] cadena  Puntero donde se pasa el buffer para guardar los 
+ *                        datos de salida serializados.
+ * @param[in]     espacio Tamaño máximo del buffer para serializar los datos.
+ *                        El tamaño máximo es sizeof(cadena) 
+ * @return                Regresa true si la serialización fue exitosa 
+ * @return                Regresa false si hubo problemas con la serialización
+ * 
+ * @code
+ * char cadena[2048];
+ * 
+ * SerializarAlumnos(cadena, sizeof(cadena));
+ * @endcode
+ */
 
 bool SerializarAlumnos(char * cadena, size_t espacio);
 
